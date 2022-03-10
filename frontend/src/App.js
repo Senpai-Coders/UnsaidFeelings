@@ -1,10 +1,13 @@
-
+import { motion } from "framer-motion"
 import React from "react";
+
+import Home from "./Pages/Home";
+
 function App() {
   return (
-    <div>
-      <p> Hello worlds </p>
-    </div>
+    <motion.div>
+      <Home />
+    </motion.div>
   );
 }
 

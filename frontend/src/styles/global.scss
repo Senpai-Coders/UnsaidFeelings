@@ -1,3 +1,25 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+@import url("https://fonts.googleapis.com/css2?family=Bad+Script&family=Major+Mono+Display&family=Syne+Mono&family=The+Girl+Next+Door&family=Yomogi&display=swap");
+
+.font-MajorMonoDisplay {
+  font-family: "Major Mono Display", monospace;
+}
+
+.font-BadScript {
+  font-family: "Bad Script", cursive;
+}
+
+.font-SyneMono {
+  font-family: "Syne Mono", monospace;
+}
+
+.font-TheGirlNextDoor {
+  font-family: "The Girl Next Door", cursive;
+}
+
+.font-Yomogi {
+  font-family: "Yomogi", cursive;
+}
