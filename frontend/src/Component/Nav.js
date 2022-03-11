@@ -23,17 +23,15 @@ const Nav = () => {
           }}
           className="absolute rounded-full bg-gray-50 dark:bg-neutral-900 p-1 border-2 border-gray-200 dark:border-gray-700 right-5 text-gray-500 hover:text-gray-700 duration-300"
         >
-          <AnimatePresence>
             {colorTheme === "light" ? (
-              <motion.div>
-                <RiMoonClearFill className="w-8 h-8" />
+              <motion.div >
+                <RiMoonClearFill className="w-5 h-5" />
               </motion.div>
             ) : (
               <motion.div>
-                <MdWbSunny className="w-8 h-8" />
+                <MdWbSunny className="w-5 h-5" />
               </motion.div>
             )}
-          </AnimatePresence>
         </button>
       </div>
     </nav>
