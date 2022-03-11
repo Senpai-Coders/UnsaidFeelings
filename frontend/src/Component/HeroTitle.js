@@ -26,18 +26,18 @@ const HeroTitle = ({ title, mode, duration, styleclass}) => {
   }, [mode, title]);
 
   return (
-    <div className="flex items-center justify-evenly text-6xl text-gray-700 m-auto">
+    <div className="flex items-center justify-evenly h-full  m-auto">
       <AnimatePresence>
         {_title.map((char, idx) => (
-          <motion.p
+          <motion.div
             key={idx}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: randomTime(duration.start, duration.end) }}
             className={styleclass}
           >
-            {char === " " ? <div>&nbsp;</div> : char}
-          </motion.p>
+            {char === " " ? <p>&nbsp;</p> : <p>{char}</p>}
+          </motion.div>
         ))}
       </AnimatePresence>
     </div>

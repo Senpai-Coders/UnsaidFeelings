@@ -3,11 +3,11 @@ import HeroTitle from "../Component/HeroTitle";
 
 const Home = () => {
   return (
-    <div>
-      <section className="flex items-center h-screen">
-        <HeroTitle title={"Unsaid Feelings"} styleclass={"font-BadScript"} mode={1} duration={{ start : 2, end : 5}} />
+    <>
+      <section className="flex items-center h-1/2 ">
+        <HeroTitle title={"Unsaid Feelings"} styleclass={"font-BadScript text-7xl text-gray-800 dark:text-gray-400"} mode={0} duration={{ start : 3, end : 8}} />
       </section>
-    </div>
+    </>
   );
 };
 
