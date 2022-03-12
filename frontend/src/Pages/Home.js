@@ -9,9 +9,9 @@ const Home = () => {
   const [filterValue, setFilterValue] = useState("to");
   const [toggleFilter, setToggleFilter] = useState(false);
 
-  const untogleFilter = () =>{
-      setToggleFilter(false)
-  }
+  const untogleFilter = () => {
+    setToggleFilter(false);
+  };
 
   return (
     <>
@@ -37,8 +37,8 @@ const Home = () => {
           <input
             type="text"
             placeholder={filterValue}
-            onClick={(e)=> untogleFilter()}
-            onKeyDown={(e)=> untogleFilter()}
+            onClick={(e) => untogleFilter()}
+            onKeyDown={(e) => untogleFilter()}
             className="mr-2 py-2 px-1 w-full tracking-widest outline-none text-gray-800 dark:text-gray-300 font-TheGirlNextDoor text-lg bg-transparent border-b-2 border-gray-600 dark:border-gray-400"
           ></input>
           <div className="relative ">
@@ -51,36 +51,34 @@ const Home = () => {
             <AnimatePresence>
               {toggleFilter && (
                 <motion.div
+                  drag
+                  dragConstraints={{
+                    top: -50,
+                    left: -50,
+                    right: 50,
+                    bottom: 50,
+                  }}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  className="absolute w-44 text-base bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700"
+                  className="absolute z-10 w-44 text-base border filter backdrop-blur-lg border-gray-100 dark:border-neutral-700 rounded divide-y divide-gray-100 "
                 >
-                  <ul className="py-1" aria-labelledby="dropdownButton">
-                    <li>
-                      <p
-                        onClick={() => setFilterValue("To")}
-                        className="cursor-pointer block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                      >
-                        To
-                      </p>
-                    </li>
-                    <li>
-                      <p
-                        onClick={() => setFilterValue("From")}
-                        className="cursor-pointer block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                      >
-                        From
-                      </p>
-                    </li>
-                    <li>
-                      <p
-                        onClick={() => setFilterValue("Letter")}
-                        className="cursor-pointer block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                      >
-                        Written
-                      </p>
-                    </li>
+                  <ul
+                    className="py-1 font-Yomogi"
+                    aria-labelledby="dropdownButton"
+                  >
+                    {["to", "from", "written"].map((fltr, idx) => (
+                      <li key={idx}>
+                        <p
+                          onClick={() => setFilterValue(fltr)}
+                          className={`cursor-pointer block py-2 px-4 text-sm text-gray-700 hover:font-semibold dark:text-gray-200 dark:hover:text-white ${
+                            fltr === filterValue && "font-semibold"
+                          }`}
+                        >
+                          {fltr}
+                        </p>
+                      </li>
+                    ))}
                   </ul>
                 </motion.div>
               )}
