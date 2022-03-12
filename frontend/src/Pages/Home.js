@@ -22,7 +22,7 @@ const Home = () => {
             "font-MajorMonoDisplay text-xl sm:text-2xl md:text-3xl lg:text-5xl text-gray-800 dark:text-gray-200"
           }
           mode={0}
-          duration={{ start: 2, end: 3 }}
+          duration={{ start: 1, end: 3 }}
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: 1, scale: 1 }}
         />
