@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 
 export const useThemeState = () => {
-
   const getSavedTheme = () => {
       const theme = localStorage.getItem('theme')
       console.log("Owshit, it get's ", theme)
