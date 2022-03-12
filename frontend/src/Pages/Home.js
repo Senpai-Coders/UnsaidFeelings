@@ -54,9 +54,9 @@ const Home = () => {
                   drag
                   dragConstraints={{
                     top: -50,
-                    left: -50,
+                    left: 0,
                     right: 50,
-                    bottom: 50,
+                    bottom: 0
                   }}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -84,9 +84,8 @@ const Home = () => {
               )}
             </AnimatePresence>
           </div>
-
           <p className="text-sm absolute -bottom-8 text-center text-gray-800 dark:text-gray-300 font-Yomogi">
-            Did someone wrote for you?
+            Did someone write for you?
           </p>
         </div>
       </motion.section>
