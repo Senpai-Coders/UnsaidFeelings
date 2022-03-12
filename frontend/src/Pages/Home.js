@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import HeroTitle from "../Component/HeroTitle";
 import { AnimatePresence, motion } from "framer-motion";
 
 import { CgOptions } from "react-icons/cg";
 
+import LetterModal from "../Component/LetterModal"
+
 const Home = () => {
-  const [doneAnimating, setDoneAnimating] = useState(false);
   const [filterValue, setFilterValue] = useState("to");
   const [toggleFilter, setToggleFilter] = useState(false);
 
@@ -15,6 +16,7 @@ const Home = () => {
 
   return (
     <>
+      <LetterModal />
       <section className="flex items-center h-2/6 md:h-1/2 ">
         <HeroTitle
           title={"Unsaid Feelings"}
