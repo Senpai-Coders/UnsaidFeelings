@@ -9,4 +9,4 @@ const userSchema=mongoose.Schema({
     bg_color:{type: String, default : 'bg-white'},
     txt_color:{type: String, default : 'text-gray-600'}
 })
-module.exports=mongoose.model('letters',userSchema)
+module.exports=mongoose.model('lettermessagecontainer',userSchema)
