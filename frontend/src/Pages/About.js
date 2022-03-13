@@ -42,7 +42,8 @@ const About = () => {
               open. You can say whatever you want, but if someone says something
               suspicious or doing something illegal. Just email us then we'll
               take care of it. You can also message us if you want us directly
-              message your loved ones.
+              message your loved ones. Once you sumbit your message. It cannot
+              be deleted. email us if you want to delete your message.
             </p>
           </div>
           <p className="relative mt-3 text-sm text-gray-400 ">
