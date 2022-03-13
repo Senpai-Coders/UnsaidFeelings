@@ -8,7 +8,7 @@ const Stars = () => {
   };
   return (
     <div
-      className="top-0 left-0 w-full h-full z-0 select-none"
+      className="fixed top-0 left-0 w-full h-full z-0 select-none"
       onMouseDown={(e) => showStar(e)}
     >
       {stars &&
