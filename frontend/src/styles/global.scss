@@ -19,3 +19,36 @@
 .font-Yomogi {
   font-family: "Yomogi", cursive;
 }
+.about-summary {
+  background-color: aqua;
+  z-index: 100000;
+}
+
+.star {
+  background-color: black;
+  position: absolute;
+  width: 1px;
+  transform: rotate(45deg);
+  animation-name: stars_animation;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+  @keyframes stars_animation {
+    0% {
+      left: 100%;
+      top: 0%;
+      height: 0%;
+    }
+
+    50% {
+      top: -20%;
+      left: 50%;
+      height: 140%;
+    }
+    100% {
+      left: 0%;
+      top: 100%;
+      height: 0%;
+    }
+  }
+}
