@@ -10,7 +10,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
   return (
-    <motion.div className="duration-500 h-screen bg-gray-50 dark:bg-neutral-900">
+    <motion.div className="duration-500 min-h-screen bg-gray-50 dark:bg-neutral-900 scrollbar-thumb scrollbar-thumb-rounded scrollbar-w-2 scrollbar-track">
       <Nav />
       <Router>
         <Switch>

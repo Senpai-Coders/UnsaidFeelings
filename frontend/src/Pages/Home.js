@@ -4,7 +4,6 @@ import { AnimatePresence, motion } from "framer-motion";
 
 import { CgOptions } from "react-icons/cg";
 
-import LetterModal from "../Component/LetterModal"
 
 const Home = () => {
   const [filterValue, setFilterValue] = useState("to");
@@ -15,8 +14,7 @@ const Home = () => {
   };
 
   return (
-    <>
-      <LetterModal />
+    <div className="h-screen">
       <section className="flex items-center h-2/6 md:h-1/2 ">
         <HeroTitle
           title={"Unsaid Feelings"}
@@ -91,7 +89,7 @@ const Home = () => {
           </p>
         </div>
       </motion.section>
-    </>
+    </div>
   );
 };
 
