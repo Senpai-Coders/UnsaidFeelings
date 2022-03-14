@@ -1,24 +1,19 @@
-import { motion } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion";
 import React from "react";
-import Home from "./Pages/Home";
-import WrittenDetails from "./Pages/WrittenDetails";
-import About from "./Pages/About";
-import NF404 from "./Pages/NF404";
+import Container from "./Pages/Container"
 import Nav from "./Component/Nav";
 import Footer from "./Component/Footer";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
   return (
-    <motion.div className="duration-500 min-h-screen bg-gray-50 dark:bg-neutral-900 scrollbar-thumb scrollbar-thumb-rounded scrollbar-w-2 scrollbar-track">
+    <motion.div className="relative duration-500 min-h-screen bg-gray-50 dark:bg-neutral-900 scrollbar-thumb scrollbar-thumb-rounded scrollbar-w-2 scrollbar-track">
       <Nav />
       <Router>
         <Switch>
-          <Route exact path="/about" component={About} />
-          <Route exact path="/home" component={Home} />
-          <Route exact path="/writtenFeelings/:feelings_id" component={WrittenDetails} />
-          <Route exact path="/" component={Home} />
-          <Route path="*" component={NF404} /> {/* Not Found */}
+          <AnimatePresence>
+            <Route path="/" component={Container} />
+          </AnimatePresence>
         </Switch>
       </Router>
       <Footer />

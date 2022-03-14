@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const Stars = () => {
-  const [getCord, setCord] = useState({ x: 0, y: 0 });
+  //const [getCord, setCord] = useState({ x: 0, y: 0 });
   const [stars, setStars] = useState([]);
   const showStar = (e) => {
     setStars(stars.concat([{ x: e.clientX, y: e.clientY }]));

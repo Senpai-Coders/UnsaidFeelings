@@ -4,7 +4,11 @@ module.exports = {
   ],
   darkMode : 'class',
   theme: {
-    extend: {},
+    extend: {
+      blur: {
+        xs: "0.2rem",
+      },
+    },
   },
   plugins: [],
 }
