@@ -4,6 +4,11 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Bad+Script&family=Major+Mono+Display&family=Syne+Mono&family=The+Girl+Next+Door&family=Yomogi&display=swap");
 
+* {
+  margin: 0;
+  padding: 0;
+}
+
 .font-MajorMonoDisplay {
   font-family: "Major Mono Display", monospace;
 }
@@ -20,26 +25,29 @@
   font-family: "Yomogi", cursive;
 }
 
-/* Scrollbar */
+/* Indention */
+.indent-1 {
+  text-indent: 3rem;
+}
 
-.scrollbar-w-2::-webkit-scrollbar {
+/* Scrollbar */
+::-webkit-scrollbar {
   width: 0.6rem;
   height: 0.25rem;
 }
 
-.scrollbar-track::-webkit-scrollbar-track {
-  @apply bg-gray-50 dark:bg-neutral-900;
+::-webkit-scrollbar-track {
+  @apply duration-500 bg-gray-50 dark:bg-neutral-900;
 }
 
-.scrollbar-thumb::-webkit-scrollbar-thumb {
-  @apply bg-gray-400 dark:bg-neutral-700;
+::-webkit-scrollbar-thumb {
+  @apply duration-500 bg-gray-400 dark:bg-neutral-700;
 }
 
-.scrollbar-thumb-rounded::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   @apply rounded-xl;
   width: 10px;
   left: -100px;
-  background-color: rgba(10, 68, 78, 0.212);
 }
 
 /** about **/
@@ -73,6 +81,24 @@
       left: 0%;
       top: 100%;
       height: 0%;
+    }
+  }
+}
+
+/* For Feelings Result Layout*/
+
+@layer utilities {
+  @variants responsive {
+    .masonry-3-col {
+      column-count: 3;
+      column-gap: 1em;
+    }
+    .masonry-2-col {
+      column-count: 2;
+      column-gap: 1em;
+    }
+    .break-inside {
+      break-inside: avoid;
     }
   }
 }

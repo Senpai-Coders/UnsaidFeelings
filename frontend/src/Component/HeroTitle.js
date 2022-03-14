@@ -42,7 +42,7 @@ const HeroTitle = ({ title, mode, duration, styleclass, initial, animate, onComp
             transition={{ duration: randomTime(duration.start, duration.end) }}
             className={styleclass}
             onAnimationComplete={() => {
-              onComplete();
+              
             }}
           >
             {char === " " ? <p>&nbsp;</p> : <p>{char}</p>}
