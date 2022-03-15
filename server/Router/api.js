@@ -7,6 +7,9 @@ const unsentFeelings = require('../models/unsentFeelings');
 const mongoose = require('mongoose');
 const { count } = require('../models/unsentFeelings');
 
+// Kunware slow internet (slow server response)
+const snooze = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
 const internalServerError = (e,res) => {
 
     console.log(e)
@@ -98,7 +101,13 @@ router.post('/select_message',(req,res,next)=>{
     }
 })
 
-router.post("/search", async (req,res) => {
+
+const fakeMiddle = async (req,res,next) => {
+    await snooze(2000)
+    next()
+}
+
+router.post("/search", fakeMiddle ,async (req,res) => {
     try{
         let { currentIds, limit, what } = req.body
 
@@ -107,7 +116,7 @@ router.post("/search", async (req,res) => {
 
         finalSearch = what.mode === 'to' ? finalSearch : finalSearch
         finalSearch = what.mode === 'from' ? {  to : { $regex: ".*" + what.search + ".*", $options: "i" } } : finalSearch
-        finalSearch = what.mode === 'letter' ? {  message : { $regex: ".*" + what.search + ".*", $options: "i" } } : finalSearch
+        finalSearch = what.mode === 'written' ? {  message : { $regex: ".*" + what.search + ".*", $options: "i" } } : finalSearch
 
         const result = await unsentFeelings.find( finalSearch ).sort({cat : 1}).limit(limit);
         
@@ -147,6 +156,7 @@ router.post('/search_messages_from',(req,res,next)=>{
         return res.status(401).json({message:e})}
         }
 })
+
 
 router.post('/search_messages_message',(req,res,next)=>{
         const {message} = req.body

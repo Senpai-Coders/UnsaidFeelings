@@ -2,11 +2,23 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-@import url("https://fonts.googleapis.com/css2?family=Bad+Script&family=Major+Mono+Display&family=Syne+Mono&family=The+Girl+Next+Door&family=Yomogi&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Bad+Script&family=Major+Mono+Display&family=Mali:wght@300&family=Noto+Sans+JP:wght@300&family=Special+Elite&family=Syne+Mono&family=The+Girl+Next+Door&family=Yomogi&display=swap');
 
 * {
   margin: 0;
   padding: 0;
+}
+
+.font-SpecialElite {
+    font-family: 'Special Elite', cursive;
+}
+
+.font-SynMono{
+    font-family: 'Syne Mono', monospace;
+}
+
+.font-Mali{
+    font-family: 'Mali', cursive;
 }
 
 .font-MajorMonoDisplay {
@@ -25,9 +37,8 @@
   font-family: "Yomogi", cursive;
 }
 
-/* Indention */
-.indent-1 {
-  text-indent: 3rem;
+.font-NotoSansJP {
+    font-family: 'Noto Sans JP', sans-serif;
 }
 
 /* Scrollbar */
@@ -88,17 +99,22 @@
 /* For Feelings Result Layout*/
 
 @layer utilities {
-  @variants responsive {
-    .masonry-3-col {
-      column-count: 3;
-      column-gap: 1em;
+    @variants responsive {
+        .masonry {
+            column-gap: 1.5rem;
+            column-count: 1;
+        }
+        .masonry-sm {
+            column-gap: 1.5rem;
+            column-count: 2;
+        }
+        .masonry-md {
+            column-gap: 1.5rem;
+            column-count: 3;
+        }
+        .break-inside {
+            break-inside: avoid;
+        }
+
     }
-    .masonry-2-col {
-      column-count: 2;
-      column-gap: 1em;
-    }
-    .break-inside {
-      break-inside: avoid;
-    }
-  }
 }
