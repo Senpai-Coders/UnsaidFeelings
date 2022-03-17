@@ -3,7 +3,7 @@
 @import "tailwindcss/utilities";
 @import "./themes.scss";
 
-@import url('https://fonts.googleapis.com/css2?family=Bad+Script&family=Major+Mono+Display&family=Mali:wght@300&family=Noto+Sans+JP:wght@300&family=Special+Elite&family=Syne+Mono&family=The+Girl+Next+Door&family=Yomogi&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Bad+Script&family=Major+Mono+Display&family=Mali:wght@300&family=Noto+Sans+JP:wght@300&family=Special+Elite&family=Syne+Mono&family=The+Girl+Next+Door&family=Yomogi&display=swap");
 
 * {
   margin: 0;
@@ -11,15 +11,15 @@
 }
 
 .font-SpecialElite {
-    font-family: 'Special Elite', cursive;
+  font-family: "Special Elite", cursive;
 }
 
-.font-SynMono{
-    font-family: 'Syne Mono', monospace;
+.font-SynMono {
+  font-family: "Syne Mono", monospace;
 }
 
-.font-Mali{
-    font-family: 'Mali', cursive;
+.font-Mali {
+  font-family: "Mali", cursive;
 }
 
 .font-MajorMonoDisplay {
@@ -39,7 +39,7 @@
 }
 
 .font-NotoSansJP {
-    font-family: 'Noto Sans JP', sans-serif;
+  font-family: "Noto Sans JP", sans-serif;
 }
 
 /* Scrollbar */
@@ -99,23 +99,49 @@
 
 /* For Feelings Result Layout*/
 
-@layer utilities {
-    @variants responsive {
-        .masonry {
-            column-gap: 1.2rem;
-            column-count: 1;
-        }
-        .masonry-sm {
-            column-gap: 1.2rem;
-            column-count: 2;
-        }
-        .masonry-md {
-            column-gap: 1.2rem;
-            column-count: 3;
-        }
-        .break-inside {
-            break-inside: avoid;
-        }
-
-    }
+.figure {
+  margin: 0;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  margin-bottom: 10px;
+  break-inside: avoid;
 }
+
+.figure-content {
+  grid-row: 1 / -1;
+  grid-column: 1;
+}
+
+.figure a {
+  color: black;
+  text-decoration: none;
+}
+
+.figcaption {
+  grid-row: 2;
+  grid-column: 1;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 0.2em 0.5em;
+  justify-self: start;
+}
+
+// @layer utilities {
+//     @variants responsive {
+//         .masonry {
+//             column-gap: 1.2rem;
+//             column-count: 1;
+//         }
+//         .masonry-sm {
+//             column-gap: 1.2rem;
+//             column-count: 2;
+//         }
+//         .masonry-md {
+//             column-gap: 1.2rem;
+//             column-count: 3;
+//         }
+//         .break-inside {
+//             break-inside: avoid;
+//         }
+
+//     }
+// }

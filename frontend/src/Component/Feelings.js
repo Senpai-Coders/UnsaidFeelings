@@ -66,7 +66,7 @@ const Feelings = ({ data }) => {
         "https://cdn.discordapp.com/attachments/912411399458795593/953836621382451301/Grid-Finest.png",
     },
     {
-      theme_name: "CreamyBlack",
+      theme_name: "CreamyDark",
       holder_txt: "text-neutral-600",
       holder_bg: "bg-zinc-100",
       holder_texture: "",
@@ -288,9 +288,9 @@ const Feelings = ({ data }) => {
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
       exit={{ opacity: 0 }}
-      className={`relative bg-cover p-2 mb-16 pb-12 break-inside shadow-md ${data.theme.holder_bg} ${data.theme.holder_txt}`}
+      className={`figure relative bg-cover p-2 mb-12 pb-5 shadow-md ${data.theme.holder_bg} ${data.theme.holder_txt}`}
     >
-      <div className="mt-12 mb-4">
+      <div className="mt-12 mb-4 figure-content">
         <p className=" tracking-wide font-Yomogi text-lg text-center"> Unsaid </p>
         <p className=" tracking-wide font-Yomogi text-lg text-center"> Feelings </p>
         <p className=" tracking-wider text-slate-600 font-Yomogi mt-4 mb-6 text-xs text-center">
@@ -299,13 +299,13 @@ const Feelings = ({ data }) => {
       </div>
       <div className="bg-neutral-500 absolute left-0 top-3/4 h-8 w-full"></div>
       <div
-        className={`relative bg-repeat drop-shadow-lg h-4/6 mx-3 px-4 pt-4 pb-16 ${data.theme.content_bg}  ${data.theme.content_txt}`}
+        className={`relative bg-repeat drop-shadow-lg mx-3 px-4 pt-4 pb-16 ${data.theme.content_bg}  ${data.theme.content_txt}`}
         style={{ backgroundImage: `url('${data.theme.content_pattern}')` }}
       >
-        <p className="leading-7 indent-8 tracking-wider font-Yomogi mb-8 text-justify">
+        <p className="leading-7 indent-8 font-semibold tracking-wider font-Yomogi mb-4 text-justify text">
           {'>'} {data.to}
         </p>
-        <p className="mb-96 leading-7 indent-8 text-lg tracking-wider md:text-xl font-TheGirlNextDoor font-semibold text-justify">
+        <p className="mb-52 leading-10 indent-8 tracking-wider font-TheGirlNextDoor md:font-semibold text-justify">
           {data.message}
         </p>
         <p className="absolute bottom-5 right-5 font-Yomogi">~ {data.from}</p>

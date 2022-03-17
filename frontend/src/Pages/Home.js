@@ -158,11 +158,11 @@ const Home = () => {
 
         {hasSearched && !loading && data.length !== 0 && (
           <section
-            className={`min-h-screen md:w-11/12 w-full my-16 ${
+            className={`min-h-screen md:w-11/12 w-full mx-auto my-16 ${
               data.length === 0 && "h-24"
             }`}
           >
-            <div className="w-full bg-red-400 py-8 masonry sm:masonry-sm md:masonry-md ">
+            <div className="w-full py-8 grid grid-col-1 sm:grid-cols-2 md:grid-cols-3 sm:gap-x-4 md:gap-x-4 gap-y-2">
               <AnimatePresence>
                 {data.map((feelings, idx) => (
                   <Feelings key={idx} data={feelings} />
