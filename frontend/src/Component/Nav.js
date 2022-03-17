@@ -9,7 +9,7 @@ const Nav = () => {
   const [colorTheme, setTheme] = useThemeState();
 
   return (
-    <nav className="sticky top-0 w-full duration-500 bg-gray-50 dark:bg-neutral-900 bg-opacity-70 backdrop-blur-md border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-transparent z-10">
+    <nav className="sticky top-0 w-full duration-500 bg-gray-50 dark:bg-neutral-900 bg-opacity-70 backdrop-blur-md border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-transparent z-10">
       <div className="relative h-8 container flex flex-wrap justify-between items-center mx-auto">
         <button
           onClick={() => {

@@ -56,7 +56,7 @@ const Home = () => {
             <HeroTitle
               title={"Unsaid Feelings"}
               styleclass={
-                "font-SpecialElite text-xl sm:text-2xl md:text-3xl lg:text-5xl text-gray-800 dark:text-gray-200"
+                "font-MajorMonoDisplay text-xl sm:text-2xl md:text-3xl lg:text-5xl text-gray-800 dark:text-gray-200"
               }
               mode={0}
               duration={{ start: 1, end: 3 }}
@@ -122,9 +122,9 @@ const Home = () => {
                           <li key={idx}>
                             <p
                               onClick={(e) => {
-                                  setFilterValue(fltr)
-                                  e.stopPropagation()
-                                }}
+                                setFilterValue(fltr);
+                                e.stopPropagation();
+                              }}
                               className={`cursor-pointer block py-2 px-4 text-sm text-gray-700 hover:font-semibold dark:text-gray-200 dark:hover:text-white ${
                                 fltr === filterValue &&
                                 "font-semibold font-SpecialElite"
@@ -149,8 +149,8 @@ const Home = () => {
               </div>
             )}
             {hasSearched && !loading && (
-              <p className="absolute -bottom-24 text-center font-thin text-gray-800 my-9 dark:text-gray-400">
-                {data.length} Found
+              <p className="absolute -bottom-28 font-SpecialElite text-sm text-center text-gray-600 my-9 dark:text-gray-400">
+                {data.length} found
               </p>
             )}
           </motion.section>
@@ -158,11 +158,11 @@ const Home = () => {
 
         {hasSearched && !loading && data.length !== 0 && (
           <section
-            className={`relative md:w-11/12 px-2 mx-auto my-16 ${
+            className={`min-h-screen md:w-11/12 w-full my-16 ${
               data.length === 0 && "h-24"
             }`}
           >
-            <div className="py-8 masonry sm:masonry-sm md:masonry-md ">
+            <div className="w-full bg-red-400 py-8 masonry sm:masonry-sm md:masonry-md ">
               <AnimatePresence>
                 {data.map((feelings, idx) => (
                   <Feelings key={idx} data={feelings} />

@@ -1,6 +1,7 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+@import "./themes.scss";
 
 @import url('https://fonts.googleapis.com/css2?family=Bad+Script&family=Major+Mono+Display&family=Mali:wght@300&family=Noto+Sans+JP:wght@300&family=Special+Elite&family=Syne+Mono&family=The+Girl+Next+Door&family=Yomogi&display=swap');
 
@@ -101,15 +102,15 @@
 @layer utilities {
     @variants responsive {
         .masonry {
-            column-gap: 1.5rem;
+            column-gap: 1.2rem;
             column-count: 1;
         }
         .masonry-sm {
-            column-gap: 1.5rem;
+            column-gap: 1.2rem;
             column-count: 2;
         }
         .masonry-md {
-            column-gap: 1.5rem;
+            column-gap: 1.2rem;
             column-count: 3;
         }
         .break-inside {
