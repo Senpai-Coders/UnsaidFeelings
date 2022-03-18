@@ -4,15 +4,16 @@ require("../config/database").connect();
 const express = require("express");
 const router = express.Router();
 const unsentFeelings = require("../models/unsentFeelings");
+const AppOptions = require("../models/AppOptions")
 const mongoose = require("mongoose");
 const { count } = require("../models/unsentFeelings");
+const { auth } = require('../middleware/authAdmin');
 
 // Kunware slow internet (slow server response)
 const snooze = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const internalServerError = (e, res) => {
-  console.log(e);
-
+  console.log(e)
   res.status(500).json({
     code: 500,
     message: "Something's wrong with the server",
@@ -21,9 +22,51 @@ const internalServerError = (e, res) => {
   });
 };
 
-router.get("/", (req, res) => {
-  res.send("From API router");
+router.post("/updateAppSettings", auth , async (req, res) => {
+  try{
+    const { mode, criteria, setting } = req.body
+    
+    let dbResponse = null
+
+
+    if(!mode && mode !== 0) return res.status(400).json({
+        message : "Please provide a mode, 👉(0=create, 1=update, -1=Delete )"
+    })
+
+    if(mode === 0) {
+        // create new settings
+        dbResponse = await AppOptions.create({ ...setting } )
+    }else if(mode === 1){
+        // update a settings
+        if( !criteria ) return res.status(400).json({
+            message : "criteria is missing, criteria is used to identify the app option you wan't to update"
+        })
+        dbResponse = await AppOptions.updateOne({ criteria }, { $set : { ...setting }} )
+    }else if(mode === -1){
+        // delete a settings
+        dbResponse = await AppOptions.deleteOne({ criteria })
+    }
+        
+    res.status(201).json({
+        message : "Ok! Noice 👌",
+        dbResponse
+    })
+  }catch(e){
+      internalServerError(e,res)
+  }
 });
+
+router.post("/getAppSettings", async(req,res)=>{
+    try{
+        const appOption = await AppOptions.find(req.body.criteria)
+        res.status(200).json({
+            message : "ok 👌",
+            appOption
+        })
+    }catch(e){
+        internalServerError(e,res)
+    }
+})
 
 router.post("/create_message", async (req, res) => {
   try {
@@ -128,7 +171,7 @@ router.post("/search", fakeMiddle, async (req, res) => {
     let finalSearch = {
       to: { $regex: ".*" + what.search + ".*", $options: "i" },
     };
-    //        let what = { mode : filterValue , search : toFind };
+    //let what = { mode : filterValue , search : toFind };
 
     finalSearch = what.mode === "to" ? finalSearch : finalSearch;
     finalSearch =
@@ -142,7 +185,7 @@ router.post("/search", fakeMiddle, async (req, res) => {
 
     const result = await unsentFeelings
       .find(finalSearch)
-      .sort({ cat: 1 })
+      .sort({ cat: -1 })
       .limit(limit);
 
     res.status(200).json({
@@ -151,84 +194,6 @@ router.post("/search", fakeMiddle, async (req, res) => {
     });
   } catch (e) {
     internalServerError(e, res);
-  }
-});
-
-router.post("/search_messages_to", (req, res, next) => {
-  const { to } = req.body;
-  run();
-  async function run() {
-    try {
-      const user = await unsentFeelings
-        .where("to")
-        .equals(`${to}`)
-        .select("to")
-        .select("message");
-      const countMessage = await unsentFeelings.where("to").equals(`${to}`);
-      console.log(user);
-      return res
-        .status(401)
-        .json({
-          message: "Success",
-          result: user,
-          Messages_found: countMessage,
-        });
-    } catch (e) {
-      return res.status(401).json({ message: e });
-    }
-  }
-});
-
-router.post("/search_messages_from", (req, res, next) => {
-  const { from } = req.body;
-  run();
-  async function run() {
-    try {
-      const user = await unsentFeelings
-        .where("from")
-        .equals(`${from}`)
-        .select("to")
-        .select("message");
-      const countMessage = await unsentFeelings.where("from").equals(`${from}`);
-      console.log(user);
-      return res
-        .status(401)
-        .json({
-          message: "Success",
-          result: user,
-          Messages_found: countMessage,
-        });
-    } catch (e) {
-      return res.status(401).json({ message: e });
-    }
-  }
-});
-
-router.post("/search_messages_message", (req, res, next) => {
-  const { message } = req.body;
-  run();
-  async function run() {
-    try {
-      const user = await unsentFeelings
-        .where("message")
-        .equals(`${message}`)
-        .select("to")
-        .select("from")
-        .select("message");
-      const countMessage = await unsentFeelings
-        .where("message")
-        .equals(`${message}`);
-      console.log(user);
-      return res
-        .status(401)
-        .json({
-          message: "Success",
-          result: user,
-          Messages_found: countMessage,
-        });
-    } catch (e) {
-      return res.status(401).json({ message: e });
-    }
   }
 });
 

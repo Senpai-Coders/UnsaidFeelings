@@ -33,7 +33,7 @@ const About = () => {
               A Archive for unsent messages
             </h1>
 
-            <p className="indent-1 font-thin leading-9 relative text-justify pb-5 mt-16 text-gray-500 dark:text-gray-200">
+            <p className="indent-1 font-thin leading-9 relative text-justify pb-5 mt-16 text-gray-800 dark:text-gray-200">
               This archive is for those who want to share their feelings without
               directly sending them to anyone but with the given alias. You can
               put your name, nickname, or don't put it at all, whatever you

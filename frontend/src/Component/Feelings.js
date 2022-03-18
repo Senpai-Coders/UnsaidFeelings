@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { motion } from "framer-motion";
-import { randomTime } from "../Utils/";
 
-const Feelings = ({ data }) => {
+import { api, apit } from "../Utils/index";
+
+const Feelings = ({ data, mode }) => {
   const theme = [
     {
       theme_name: "CreamyWhite",
@@ -279,21 +280,24 @@ const Feelings = ({ data }) => {
     },
   ];
 
-  const bg_url =
-    "https://cdn.discordapp.com/attachments/912411399458795593/953491101203980338/Grid-Fine.png";
-
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
       exit={{ opacity: 0 }}
-      className={`figure relative bg-cover p-2 mb-12 pb-5 shadow-md ${data.theme.holder_bg} ${data.theme.holder_txt}`}
+      className={`relative bg-cover p-2 mb-12 pb-5 shadow-2xl ${data.theme.holder_bg} ${data.theme.holder_txt}`}
     >
-      <div className="mt-12 mb-4 figure-content">
-        <p className=" tracking-wide font-Yomogi text-lg text-center"> Unsaid </p>
-        <p className=" tracking-wide font-Yomogi text-lg text-center"> Feelings </p>
-        <p className=" tracking-wider text-slate-600 font-Yomogi mt-4 mb-6 text-xs text-center">
+      <div className="mt-9 mb-4 figure-content">
+        <p className=" tracking-wide font-Yomogi text-lg text-center">
+          {" "}
+          Unsaid{" "}
+        </p>
+        <p className=" tracking-wide font-Yomogi text-lg text-center">
+          {" "}
+          Feelings{" "}
+        </p>
+        <p className=" tracking-wider font-Yomogi mt-4 mb-6 text-xs text-center">
           feelings that are left unsaid
         </p>
       </div>
@@ -302,13 +306,27 @@ const Feelings = ({ data }) => {
         className={`relative bg-repeat drop-shadow-lg mx-3 px-4 pt-4 pb-16 ${data.theme.content_bg}  ${data.theme.content_txt}`}
         style={{ backgroundImage: `url('${data.theme.content_pattern}')` }}
       >
-        <p className="leading-7 indent-8 font-semibold tracking-wider font-Yomogi mb-4 text-justify text">
-          {'>'} {data.to}
-        </p>
-        <p className="mb-52 leading-10 indent-8 tracking-wider font-TheGirlNextDoor md:font-semibold text-justify">
-          {data.message}
-        </p>
-        <p className="absolute bottom-5 right-5 font-Yomogi">~ {data.from}</p>
+        {mode !== 0 ? (
+          <>
+            <p className="text-lg leading-7 indent-8 tracking-wider font-Yomogi mb-4 text-justify text">
+              {">"} {data.to}
+            </p>
+            <p
+              className={`${
+                data.message.length >= 130 ? "mb-28" : "mb-80"
+              } text-lg leading-10 indent-8 tracking-wider font-TheGirlNextDoor md:font-semibold text-justify`}
+            >
+              {data.message}
+            </p>
+            <p className="text-lg absolute bottom-12 right-5 font-Yomogi">
+              ~ {data.from}
+            </p>
+          </>
+        ) : 
+        (
+            <input className="text-lg leading-7 indent-8 tracking-wider font-Yomogi mb-4 text-justify bg-transparent outline-none" type="text" placeholder="> to" />
+        )
+        }
       </div>
     </motion.div>
   );
