@@ -63,6 +63,7 @@ const Submit = () => {
       const THEMES = await api.post("/getAppSettings", {
         criteria: { key: "Themes" },
       });
+
       const TEXTURE = await api.post("/getAppSettings", {
         criteria: { key: "Textures" },
       });
@@ -76,6 +77,8 @@ const Submit = () => {
       setLoading(false)
     } catch (e) {
       console.log(e.response.data);
+      setLoading(false)
+
     }
   };
 
@@ -141,7 +144,7 @@ const Submit = () => {
               className="indent-6 w-full px-4 py-2 bg-transparent border-b outline-none font-semibold"
             />
           </div>
-          <p className="font-bold pt-8">Themes</p>
+          <p className="font-bold pt-8">Theme</p>
           {
               loading && <div className="">
                 <Loading />

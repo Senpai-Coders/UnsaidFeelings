@@ -27,6 +27,15 @@ const internalServerError = (e, res) => {
   });
 };
 
+router.post("/initOptions", async(req,res)=>{
+    try{
+        
+
+    }catch(e){
+        internalServerError(e,res)
+    }
+})
+
 router.post("/updateAppSettings", auth , async (req, res) => {
   try{
     const { mode, criteria, setting } = req.body
