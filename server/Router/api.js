@@ -12,6 +12,11 @@ const { auth } = require('../middleware/authAdmin');
 // Kunware slow internet (slow server response)
 const snooze = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
+const fakeDelay = async (req, res, next) => {
+    await snooze(2000);
+    next();
+  };
+
 const internalServerError = (e, res) => {
   console.log(e)
   res.status(500).json({
@@ -56,11 +61,12 @@ router.post("/updateAppSettings", auth , async (req, res) => {
   }
 });
 
-router.post("/getAppSettings", async(req,res)=>{
+router.post("/getAppSettings",  fakeDelay , async(req,res)=>{
     try{
+
         const appOption = await AppOptions.find(req.body.criteria)
         res.status(200).json({
-            message : "ok 👌",
+            message : "ok 👌",   
             appOption
         })
     }catch(e){
@@ -159,12 +165,7 @@ router.post("/select_message", (req, res, next) => {
   }
 });
 
-const fakeMiddle = async (req, res, next) => {
-  await snooze(2000);
-  next();
-};
-
-router.post("/search", fakeMiddle, async (req, res) => {
+router.post("/search", fakeDelay, async (req, res) => {
   try {
     let { currentIds, limit, what } = req.body;
 

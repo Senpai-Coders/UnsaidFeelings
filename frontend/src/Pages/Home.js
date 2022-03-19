@@ -59,7 +59,7 @@ const Home = () => {
             <HeroTitle
               title={"Unsaid Feelings"}
               styleclass={
-                "font-MajorMonoDisplay text-xl sm:text-2xl md:text-4xl  text-gray-800 dark:text-gray-200"
+                "font-MajorMonoDisplay text-xl sm:text-2xl md:text-4xl text-gray-800 dark:text-gray-200"
               }
               mode={0}
               duration={{ start: 1, end: 3 }}

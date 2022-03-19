@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import { motion } from "framer-motion";
 
 import { api, apit } from "../Utils/index";
 
-const Feelings = ({ data, mode }) => {
+const Feelings = ({ data, mode, setTo, setFrom, setMessage }) => {
   const theme = [
     {
       theme_name: "CreamyWhite",
@@ -280,6 +280,14 @@ const Feelings = ({ data, mode }) => {
     },
   ];
 
+  const getLines = () => {
+    let text = document.getElementById("message").value;   
+    let lines = text.split(/\r|\r\n|\n/);
+    let count = lines.length;
+    console.log(count)
+    return count > 8
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -322,11 +330,32 @@ const Feelings = ({ data, mode }) => {
               ~ {data.from}
             </p>
           </>
-        ) : 
-        (
-            <input className="text-lg leading-7 indent-8 tracking-wider font-Yomogi mb-4 text-justify bg-transparent outline-none" type="text" placeholder="> to" />
-        )
-        }
+        ) : (
+          <>
+            <input
+              className="border-b w-3/4 text-lg leading-7 indent-8 tracking-wider font-Yomogi mb-4 text-justify bg-transparent outline-none"
+              type="text"
+              onChange={(e) => {
+                setTo(e.target.value);
+              }}
+              placeholder="> to"
+            />
+            <textarea
+              id={"message"}
+              rows={8}
+              className={`resize-none mb-28 bg-transparent outline-none w-full text-lg leading-10 indent-8 tracking-wider font-TheGirlNextDoor md:font-semibold text-justify`}
+              value={ data.message }
+              onChange={(e) => {
+                if( getLines() ) return
+                if( e.target.value.length >= 250 ) return
+                setMessage(e.target.value);
+              }}
+              placeholder="Write your feelings here"
+            />
+            <input type='text' placeholder="from (optional)" className="border-b w-2/4 outline-none bg-transparent text-lg absolute bottom-12 right-5 font-Yomogi text-right" />
+              
+          </>
+        )}
       </div>
     </motion.div>
   );
