@@ -29,7 +29,292 @@ const internalServerError = (e, res) => {
 
 router.post("/initOptions", async(req,res)=>{
     try{
-        
+        const theme = [
+            {
+              theme_name: "CreamyWhite",
+              holder_txt: "text-neutral-600",
+              holder_bg: "bg-zinc-100",
+              holder_texture: "",
+              content_bg: "bg-stone-50",
+              content_txt: "text-neutral-600",
+              content_pattern:
+                "https://cdn.discordapp.com/attachments/912411399458795593/953836621382451301/Grid-Finest.png",
+            },
+            {
+              theme_name: "CreamyRose",
+              holder_txt: "text-neutral-600",
+              holder_bg: "bg-zinc-100",
+              holder_texture: "",
+              content_bg: "bg-rose-200",
+              content_txt: "text-neutral-50",
+              content_pattern:
+                "https://cdn.discordapp.com/attachments/912411399458795593/953836621382451301/Grid-Finest.png",
+            },
+            {
+              theme_name: "CreamyToast",
+              holder_txt: "text-neutral-600",
+              holder_bg: "bg-zinc-100",
+              holder_texture: "",
+              content_bg: "bg-brown-500",
+              content_txt: "text-neutral-50",
+              content_pattern:
+                "https://cdn.discordapp.com/attachments/912411399458795593/953836621382451301/Grid-Finest.png",
+            },
+            {
+              theme_name: "CreamyGray",
+              holder_txt: "text-neutral-600",
+              holder_bg: "bg-zinc-100",
+              holder_texture: "",
+              content_bg: "bg-gray-400",
+              content_txt: "text-neutral-50",
+              content_pattern:
+                "https://cdn.discordapp.com/attachments/912411399458795593/953836621382451301/Grid-Finest.png",
+            },
+            {
+              theme_name: "CreamyBrandyRose",
+              holder_txt: "text-neutral-600",
+              holder_bg: "bg-zinc-100",
+              holder_texture: "",
+              content_bg: "bg-rose-500",
+              content_txt: "text-neutral-50",
+              content_pattern:
+                "https://cdn.discordapp.com/attachments/912411399458795593/953836621382451301/Grid-Finest.png",
+            },
+            {
+              theme_name: "CreamyCoal",
+              holder_txt: "text-neutral-600",
+              holder_bg: "bg-zinc-100",
+              holder_texture: "",
+              content_bg: "bg-stone-700",
+              content_txt: "text-neutral-50",
+              content_pattern:
+                "https://cdn.discordapp.com/attachments/912411399458795593/953836621382451301/Grid-Finest.png",
+            },
+            {
+              theme_name: "CreamyDark",
+              holder_txt: "text-neutral-600",
+              holder_bg: "bg-zinc-100",
+              holder_texture: "",
+              content_bg: "bg-stone-800",
+              content_txt: "text-neutral-50",
+              content_pattern:
+                "https://cdn.discordapp.com/attachments/912411399458795593/953836621382451301/Grid-Finest.png",
+            },
+            {
+              theme_name: "WhiteStone",
+              holder_txt: "text-neutral-600",
+              holder_bg: "bg-white",
+              holder_texture: "",
+              content_bg: "bg-stone-50",
+              content_txt: "text-neutral-700",
+              content_pattern:
+                "https://cdn.discordapp.com/attachments/912411399458795593/953836621382451301/Grid-Finest.png",
+            },
+            {
+              theme_name: "WhiteRose",
+              holder_txt: "text-neutral-600",
+              holder_bg: "bg-white",
+              holder_texture: "",
+              content_bg: "bg-rose-200",
+              content_txt: "text-neutral-700",
+              content_pattern:
+                "https://cdn.discordapp.com/attachments/912411399458795593/953836621382451301/Grid-Finest.png",
+            },
+            {
+              theme_name: "WhiteToast",
+              holder_txt: "text-neutral-600",
+              holder_bg: "bg-white",
+              holder_texture: "",
+              content_pattern:
+                "https://cdn.discordapp.com/attachments/912411399458795593/953836621382451301/Grid-Finest.png",
+              content_bg: "bg-[#A4756A]",
+              content_txt: "text-neutral-50",
+              content_pattern:
+                "https://cdn.discordapp.com/attachments/912411399458795593/953836621382451301/Grid-Finest.png",
+            },
+            {
+              theme_name: "WhiteGray",
+              holder_txt: "text-neutral-600",
+              holder_bg: "bg-white",
+              holder_texture: "",
+              content_bg: "bg-gray-400",
+              content_txt: "text-neutral-50",
+              content_pattern:
+                "https://cdn.discordapp.com/attachments/912411399458795593/953836621382451301/Grid-Finest.png",
+            },
+            {
+              theme_name: "WhiteBrandyRose",
+              holder_txt: "text-neutral-600",
+              holder_bg: "bg-white",
+              holder_texture: "",
+              content_bg: "bg-[#C17F6D]",
+              content_txt: "text-neutral-50",
+              content_pattern:
+                "https://cdn.discordapp.com/attachments/912411399458795593/953836621382451301/Grid-Finest.png",
+            },
+            {
+              theme_name: "WhiteCoal",
+              holder_txt: "text-neutral-600",
+              holder_bg: "bg-white",
+              holder_texture: "",
+              content_bg: "bg-stone-700",
+              content_txt: "text-neutral-50",
+              content_pattern:
+                "https://cdn.discordapp.com/attachments/912411399458795593/953836621382451301/Grid-Finest.png",
+            },
+            {
+              theme_name: "WhiteDark",
+              holder_txt: "text-neutral-600",
+              holder_bg: "bg-white",
+              holder_texture: "",
+              content_bg: "bg-stone-800",
+              content_txt: "text-neutral-50",
+              content_pattern:
+                "https://cdn.discordapp.com/attachments/912411399458795593/953836621382451301/Grid-Finest.png",
+            },
+            {
+              theme_name: "WhiteEerie",
+              holder_txt: "text-neutral-600",
+              holder_bg: "bg-white",
+              holder_texture: "",
+              content_bg: "bg-red-500",
+              content_txt: "text-neutral-50",
+              content_pattern:
+                "https://cdn.discordapp.com/attachments/912411399458795593/953836621382451301/Grid-Finest.png",
+            },
+            {
+              theme_name: "DarkWhite",
+              holder_txt: "text-neutral-50",
+              holder_bg: "bg-stone-800",
+              holder_texture: "",
+              content_bg: "bg-white",
+              content_txt: "text-neutral-700",
+              content_pattern:
+                "https://cdn.discordapp.com/attachments/912411399458795593/953836621382451301/Grid-Finest.png",
+            },
+            {
+              theme_name: "DarkEerie",
+              holder_txt: "text-neutral-50",
+              holder_bg: "bg-stone-800",
+              holder_texture: "",
+              content_bg: "bg-red-500",
+              content_txt: "text-neutral-50",
+              content_pattern:
+                "https://cdn.discordapp.com/attachments/912411399458795593/953836621382451301/Grid-Finest.png",
+            },
+            {
+              theme_name: "EerieTorch",
+              holder_txt: "text-neutral-600",
+              holder_bg: "bg-red-300",
+              holder_texture: "",
+              content_bg: "bg-red-500",
+              content_txt: "text-neutral-50",
+              content_pattern:
+                "https://cdn.discordapp.com/attachments/912411399458795593/953836621382451301/Grid-Finest.png",
+            },
+            {
+              theme_name: "OceaWhite",
+              holder_txt: "text-neutral-600",
+              holder_bg: "bg-sky-200",
+              holder_texture: "",
+              content_bg: "bg-sky-50",
+              content_txt: "text-neutral-700",
+              content_pattern:
+                "https://cdn.discordapp.com/attachments/912411399458795593/953836621382451301/Grid-Finest.png",
+            },
+            {
+              theme_name: "SkyAsh",
+              holder_txt: "text-neutral-600",
+              holder_bg: "bg-sky-200",
+              holder_texture: "",
+              content_bg: "bg-[#F1F1F1]",
+              content_txt: "text-neutral-700",
+              content_pattern:
+                "https://cdn.discordapp.com/attachments/912411399458795593/953836621382451301/Grid-Finest.png",
+            },
+            {
+              theme_name: "Turqouise",
+              holder_txt: "text-neutral-600",
+              holder_bg: "bg-teal-100",
+              holder_texture: "",
+              content_bg: "bg-teal-500",
+              content_txt: "text-white",
+              content_pattern:
+                "https://cdn.discordapp.com/attachments/912411399458795593/953836621382451301/Grid-Finest.png",
+            },
+            {
+              theme_name: "AmberSupernova",
+              holder_txt: "text-neutral-50",
+              holder_bg: "bg-amber-100",
+              holder_texture: "",
+              content_bg: "bg-amber-300",
+              content_txt: "text-neutral-700",
+              content_pattern:
+                "https://cdn.discordapp.com/attachments/912411399458795593/953836621382451301/Grid-Finest.png",
+            },
+            {
+              theme_name: "SkyCornField",
+              holder_txt: "text-neutral-600",
+              holder_bg: "bg-cyan-50",
+              holder_texture: "",
+              content_bg: "bg-[#FFF1D4]",
+              content_txt: "text-neutral-700",
+              content_pattern:
+                "https://cdn.discordapp.com/attachments/912411399458795593/953836621382451301/Grid-Finest.png",
+            },
+            {
+              theme_name: "GreenHaze",
+              holder_txt: "text-neutral-600",
+              holder_bg: "bg-[#00A46C]",
+              holder_texture: "",
+              content_bg: "bg-emerald-100",
+              content_txt: "text-neutral-700",
+              content_pattern:
+                "https://cdn.discordapp.com/attachments/912411399458795593/953836621382451301/Grid-Finest.png",
+            },
+            {
+              theme_name: "DarkCoal",
+              holder_txt: "text-neutral-50",
+              holder_bg: "bg-neutral-900",
+              holder_texture: "",
+              content_bg: "bg-neutral-500",
+              content_txt: "text-neutral-50",
+              content_pattern:
+                "https://cdn.discordapp.com/attachments/912411399458795593/953836621382451301/Grid-Finest.png",
+            },
+            {
+              theme_name: "DarkVoid",
+              holder_txt: "text-neutral-50",
+              holder_bg: "bg-neutral-900",
+              holder_texture: "",
+              content_bg: "bg-black",
+              content_txt: "text-neutral-50",
+              content_pattern:
+                "https://cdn.discordapp.com/attachments/912411399458795593/953836621382451301/Grid-Finest.png",
+            },
+            {
+              theme_name: "CompleteVoid",
+              holder_txt: "text-neutral-50",
+              holder_bg: "bg-black",
+              holder_texture: "",
+              content_bg: "bg-black",
+              content_txt: "text-neutral-50",
+              content_pattern:
+                "https://cdn.discordapp.com/attachments/912411399458795593/953836621382451301/Grid-Finest.png",
+            },
+          ];
+
+        theme.forEach(async(t, i)=>{
+            await AppOptions.create({
+                key: "Themes",
+                name: t.theme_name,
+                value: t,
+                whoAreYou: "Jerbee"
+            })
+        })
+        res.status(201).json({
+            message : "AppOption Has been created, don't request to this link again"
+        })
 
     }catch(e){
         internalServerError(e,res)
@@ -41,7 +326,6 @@ router.post("/updateAppSettings", auth , async (req, res) => {
     const { mode, criteria, setting } = req.body
     
     let dbResponse = null
-
 
     if(!mode && mode !== 0) return res.status(400).json({
         message : "Please provide a mode, 👉(0=create, 1=update, -1=Delete )"
@@ -55,10 +339,11 @@ router.post("/updateAppSettings", auth , async (req, res) => {
         if( !criteria ) return res.status(400).json({
             message : "criteria is missing, criteria is used to identify the app option you wan't to update"
         })
-        dbResponse = await AppOptions.updateOne({ criteria }, { $set : { ...setting }} )
+        console.log("Update App Option", criteria, setting)
+        dbResponse = await AppOptions.updateOne( criteria, { $set : { ...setting }} )
     }else if(mode === -1){
         // delete a settings
-        dbResponse = await AppOptions.deleteOne({ criteria })
+        dbResponse = await AppOptions.deleteOne( criteria )
     }
         
     res.status(201).json({
@@ -70,7 +355,7 @@ router.post("/updateAppSettings", auth , async (req, res) => {
   }
 });
 
-router.post("/getAppSettings",  fakeDelay , async(req,res)=>{
+router.post("/getAppSettings"  , async(req,res)=>{
     try{
 
         const appOption = await AppOptions.find(req.body.criteria)
@@ -174,7 +459,7 @@ router.post("/select_message", (req, res, next) => {
   }
 });
 
-router.post("/search", fakeDelay, async (req, res) => {
+router.post("/search", async (req, res) => {
   try {
     let { currentIds, limit, what } = req.body;
 
