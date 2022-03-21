@@ -147,7 +147,7 @@ const Submit = () => {
           <Feelings
             data={{
               to,
-              from,
+              from : from.length === 0? 'Anonymous' :from ,
               message,
               theme: !chosenTheme ? themes[0].value : chosenTheme,
             }}
