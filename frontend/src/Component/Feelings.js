@@ -38,7 +38,7 @@ const Feelings = ({ data }) => {
       </div>
       <div className="bg-neutral-500 absolute left-0 top-3/4 h-8 w-full"></div>
       <div
-        className={`duration-500 relative bg-repeat drop-shadow-lg mx-3 px-4 pt-4 pb-16 ${data.theme.content_bg}  ${data.theme.content_txt}`}
+        className={`duration-500 bg-repeat drop-shadow-lg mx-3 px-4 pt-4 pb-16 ${data.theme.content_bg}  ${data.theme.content_txt}`}
         style={{ backgroundImage: `url('${data.theme.content_pattern}')` }}
       >
           <>
@@ -47,8 +47,8 @@ const Feelings = ({ data }) => {
             </p>
             <p
               className={`${
-                data.message.length >= 130 ? "mb-28" : "mb-80"
-              } text-lg leading-10 indent-8 tracking-wider font-TheGirlNextDoor md:font-semibold text-justify`}
+                data.message.length >= 130 ? "mb-36" : "mb-72"
+              } text-lg leading-10 indent-8 tracking-wider font-TheGirlNextDoor max-w-full md:font-semibold text-justify break-words`}
             >
               {data.message}
             </p>

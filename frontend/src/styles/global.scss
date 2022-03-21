@@ -3,11 +3,15 @@
 @import "tailwindcss/utilities";
 @import "./themes.scss";
 
-@import url("https://fonts.googleapis.com/css2?family=Bad+Script&family=Major+Mono+Display&family=Mali:wght@300&family=Noto+Sans+JP:wght@300&family=Special+Elite&family=Syne+Mono&family=The+Girl+Next+Door&family=Yomogi&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Bad+Script&family=Inter&family=Major+Mono+Display&family=Mali:wght@300&family=Noto+Sans+JP:wght@300&family=Special+Elite&family=Syne+Mono&family=The+Girl+Next+Door&family=Yomogi&display=swap');
 
 * {
   margin: 0;
   padding: 0;
+}
+
+.font-Inter{
+    font-family: 'Inter', sans-serif;
 }
 
 .font-SpecialElite {
