@@ -35,7 +35,7 @@ export const parseDate = (date) => {
 
   let wordDate = `${thisDate.toLocaleString("en-us", {
     month: "short",
-  })} ${thisDate.getDate()}, ${thisDate.getFullYear()}`;
+  })} ${thisDate.getDate()}, ${thisDate.getFullYear()} at ${thisDate.toLocaleString('en-US', { hour: 'numeric', minute : 'numeric' , hour12: true })}`;
 
   return wordDate;
 };

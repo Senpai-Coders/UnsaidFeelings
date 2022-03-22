@@ -20,7 +20,7 @@ const Container = () => {
         <Route exact path="/⚡" component={WhiteLister} />
         <Route
           exact
-          path="/writtenFeelings/:feelings_id"
+          path="/writtenFeelings"
           component={WrittenDetails}
         />
         <Route exact path="/" component={Home} />

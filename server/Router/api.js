@@ -6,7 +6,7 @@ const router = express.Router();
 const unsentFeelings = require("../models/unsentFeelings");
 const AppOptions = require("../models/AppOptions")
 const mongoose = require("mongoose");
-const { count } = require("../models/unsentFeelings");
+const { count, update } = require("../models/unsentFeelings");
 const { auth } = require('../middleware/authAdmin');
 
 // Kunware slow internet (slow server response)
@@ -355,7 +355,7 @@ router.post("/updateAppSettings", auth , async (req, res) => {
   }
 });
 
-router.post("/getAppSettings"  , async(req,res)=>{
+router.post("/getAppSettings" , async(req,res)=>{
     try{
 
         const appOption = await AppOptions.find(req.body.criteria)
@@ -372,16 +372,45 @@ router.post("/create_message", async (req, res) => {
   try {
     const content = req.body;
     const message = await unsentFeelings.create({ ...content });
+
+    const canSave = await AppOptions.findOne({ key : 'AppState' , name : 'CanSubmit'})
+
+    if(!canSave.value) return internalServerError({},res)
+
+    const updateTotalSub = await AppOptions.updateOne({
+        key : "AppState",
+        name : "TotalSubmissions"
+    }, {$inc : { value : 1 }})
+
     return res.status(201).json({
       message: "Your feelings where written",
       content: message,
     });
   } catch (e) {
-    return res.status(500).json({
-      message: "",
-    });
+      internalServerError(e,res)
   }
 });
+
+router.get("/feelings_details/:id", async (req, res)=>{
+    try{
+        const id = req.params.id
+
+        const resp = await unsentFeelings.findOne({ _id : id })
+
+        if(!resp) return res.status(404).json({
+            message : "NotFound"
+        })
+
+        const update_views = await unsentFeelings.updateOne({ _id : id }, { $inc : { views : 1}})
+
+        return res.status(200).json({
+            message : "Found 👌",
+            details : resp
+        })
+    }catch(e){
+        internalServerError(e,res)
+    }
+})
 
 router.post(`/update_message`, (req, res) => {
   const { id, message } = req.body;

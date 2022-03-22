@@ -1,25 +1,39 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { AnimatePresence, motion } from "framer-motion";
 
-import { BsVectorPen } from "react-icons/bs";
+import { BsFolderX, BsVectorPen } from "react-icons/bs";
 import { CgOptions } from "react-icons/cg";
 
-import { api } from "../Utils";
+import { api, nShorter } from "../Utils";
 
 import HeroTitle from "../Component/HeroTitle";
 import Feelings from "../Component/Feelings";
 import Loading from "../Component/Loading";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
-const Home = () => {
+const Home = (props) => {
   const [filterValue, setFilterValue] = useState("to");
   const [toggleFilter, setToggleFilter] = useState(false);
   const [toFind, setToFind] = useState("");
 
   const [data, setData] = useState([]);
   const [hasSearched, setHasSearched] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  const [appState, setAppState] = useState()
+
+  const init = async () => {
+      try{
+        const appStates = await api.post("/getAppSettings", {
+            criteria: { key: "AppState" },
+          });
+
+        setAppState(appStates.data.appOption)
+      }catch(e){
+          console.log(e)
+      }
+  }
 
   const search = async () => {
     try {
@@ -49,6 +63,23 @@ const Home = () => {
     setToggleFilter(false);
   };
 
+  const getAppOption = (name, key) => {
+      if(!appState) return { value : ''}
+
+      for(var x = 0; x < appState.length; x++){
+          const foc = appState[x] 
+          if(foc.name === name && foc.key === key)
+            return foc
+      }
+      
+      return { value : ''}
+  }
+
+  useEffect(()=>{
+      search()
+      init()
+  },[])
+
   return (
     <>
       <div onClick={() => setToggleFilter(false)} className="mt-12">
@@ -71,10 +102,12 @@ const Home = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 4 }}
-            onAnimationComplete={()=>{search(true)}}
             className="relative flex flex-col justify-center items-center my-4"
           >
-            <Link to="/write" className="px-5 py-1 my-4 flex font-Yomogi duration-300 text-gray-700 ring-1 hover:ring-1 ring-neutral-200 dark:ring-neutral-700 hover:ring-neutral-800 dark:hover:ring-neutral-400 rounded-md hover:text-gray-900 dark:text-gray-400 items-center space-x-4">
+            <Link
+              to="/write"
+              className="px-5 py-1 my-4 flex font-Yomogi duration-300 text-gray-700 ring-1 hover:ring-1 ring-neutral-200 dark:ring-neutral-700 hover:ring-neutral-800 dark:hover:ring-neutral-400 rounded-md hover:text-gray-900 dark:text-gray-400 items-center space-x-4"
+            >
               <BsVectorPen className="h-5 w-5" /> <p>Write Yours</p>
             </Link>
 
@@ -161,9 +194,9 @@ const Home = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5 }}
-                className="absolute -bottom-36 font-TheGirlNextDoor text-center text-gray-700 my-9 dark:text-gray-400"
+                className={`absolute -bottom-36 text-center text-gray-700 my-9 dark:text-gray-400 ${data.length === 0? 'font-TheGirlNextDoor' : 'font-Yomogi'}`}
               >
-                {data.length === 0 ? "Sorry, We Found Nothing" : ""}
+                {data.length === 0 ? "Sorry, We Found Nothing" : `${nShorter(getAppOption('TotalSubmissions', 'AppState').value,2)} Total Submissions`}
               </motion.p>
             )}
           </motion.section>
@@ -175,10 +208,18 @@ const Home = () => {
               data.length === 0 && "h-24"
             }`}
           >
-            <div className="w-full py-8 grid grid-col-1 sm:grid-cols-2 lg:grid-cols-3 sm:gap-x-4 md:gap-x-4 gap-y-2">
+            <div className="w-full py-8 grid grid-col-1 sm:grid-cols-2 lg:grid-cols-3 sm:gap-x-4 md:gap-x-8 gap-y-2">
               <AnimatePresence>
                 {data.map((feelings, idx) => (
-                  <Feelings key={idx} data={feelings} />
+                  <div
+                    key={idx}
+                    className="cursor-pointer"
+                    onClick={() => {
+                      props.history.push(`/writtenFeelings?id=${feelings._id}`);
+                    }}
+                  >
+                    <Feelings data={feelings} />
+                  </div>
                 ))}
               </AnimatePresence>
             </div>
@@ -189,4 +230,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default withRouter(Home);
