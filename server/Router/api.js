@@ -27,6 +27,13 @@ const internalServerError = (e, res) => {
   });
 };
 
+router.get("/", (req, res)=>{
+    res.status(200).json({
+        message : "You are viewing this",
+        from : "SenpaiDevs ✨"
+    })
+})
+
 router.post("/initOptions", async(req,res)=>{
     try{
         const theme = [

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const api = axios.create({
-  baseURL: "http://localhost:3001/api",
+  baseURL: "https://unsaidfeelings-api.herokuapp.com/api",
 });
 
 export const randomTime = (start, end) => {

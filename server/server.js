@@ -1,8 +1,10 @@
+require("dotenv").config();
 const express=require('express')
 const server=express()
 const bodyParser=require('body-parser')
 
-const PORT=3001
+const envPort = process.env.PORT
+const PORT = envPort ? envPort : 80
 const cors=require('cors')
 
 
