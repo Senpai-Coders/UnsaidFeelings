@@ -495,7 +495,7 @@ router.post("/select_message", (req, res, next) => {
   }
 });
 
-router.post("/search", async (req, res) => {
+router.post("/search", fakeDelay,async (req, res) => {
   try {
     let { currentIds, limit, what } = req.body;
 
@@ -515,7 +515,7 @@ router.post("/search", async (req, res) => {
         : finalSearch;
 
     const result = await unsentFeelings
-      .find(finalSearch)
+      .find({ ...finalSearch, _id : { $nin : currentIds }})
       .sort({ cat: -1 })
       .limit(limit);
 

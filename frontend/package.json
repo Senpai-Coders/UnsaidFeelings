@@ -25,20 +25,14 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-<<<<<<< HEAD
     "dev": "react-scripts start",
     "start": "node server.js",
-=======
->>>>>>> 96b1c4669fffdb3462076abc916a44d1f323b72c
     "build": "react-scripts build",
     "devstart": "react-scripts start",
-    "start": "node server.js",
-    "test": "react-scripts test",
     "eject": "react-scripts eject",
     "startx": "react-scripts start",
     "startox": "node --optimize_for_size --max_old_space_size=460 dist/main.js",
     "buildx": "react-scripts build",
-    "testx": "react-scripts test",
     "ejectx": "react-scripts eject"
   },
   "eslintConfig": {

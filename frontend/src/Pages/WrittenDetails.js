@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { api } from "../Utils";
@@ -40,7 +40,7 @@ const WrittenDetails = () => {
   }, []);
 
   return (
-    <div className=" w-full font-Inter text-neutral-600 my-4 dark:text-neutral-100">
+    <div className="w-full font-Inter text-neutral-600 my-4 dark:text-neutral-100">
       <motion.p
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -56,7 +56,7 @@ const WrittenDetails = () => {
       </div>
       {!loading && !details && <p className="text-center my-8 text-2xl font-Yomogi ">{!query.get('state')? "Sorry but this written feeling doesn't exist anymore" : "Sorry, but we can't save right now"}</p>}
       {!loading && details && (
-        <div className="w-3/12 mx-auto">
+        <div className="w-9/12 sm:w-1/2 lg:w-3/12 mx-auto">
           <div className="">
             <Feelings data={details} />
           </div>

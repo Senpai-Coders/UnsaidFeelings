@@ -2,17 +2,15 @@ import React from "react";
 
 import { motion } from "framer-motion";
 
-import { api, apit } from "../Utils/index";
-
 const Feelings = ({ data }) => {
 
-  const getLines = () => {
-    let text = document.getElementById("message").value;   
-    let lines = text.split(/\r|\r\n|\n/);
-    let count = lines.length;
-    console.log(count)
-    return count > 8
-  }
+//   const getLines = () => {
+//     let text = document.getElementById("message").value;   
+//     let lines = text.split(/\r|\r\n|\n/);
+//     let count = lines.length;
+//     console.log(count)
+//     return count > 8
+//   }
 
 
   return (
@@ -42,13 +40,13 @@ const Feelings = ({ data }) => {
         style={{ backgroundImage: `url('${data.theme.content_pattern}')` }}
       >
           <>
-            <p className="text-lg leading-7 indent-8 tracking-wider font-Yomogi mb-4 text-justify text">
+            <p className="text-lg break-words leading-7 indent-8 tracking-wider font-Yomogi mb-4 text-justify text">
               {">"} {data.to}
             </p>
             <p
               className={`${
                 data.message.length >= 130 ? "mb-36" : "mb-72"
-              } text-lg leading-10 indent-8 tracking-wider font-TheGirlNextDoor max-w-full md:font-semibold text-justify break-words`}
+              } text-lg leading-10 indent-8 tracking-wider font-TheGirlNextDoor max-w-full font-semibold text-justify break-words`}
             >
               {data.message}
             </p>

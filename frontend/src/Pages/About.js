@@ -9,19 +9,19 @@ import { AiTwotoneMail } from "react-icons/ai";
 import { AiFillGithub } from "react-icons/ai";
 import Stars from "../Component/Stars";
 import { Link } from "react-router-dom";
-import { FaNode } from "react-icons/fa" 
-import { SiTailwindcss, SiMongodb } from 'react-icons/si'
-import { GrReactjs } from 'react-icons/gr'
-import { IoLogoNpm } from 'react-icons/io5'
-import { DiHeroku } from "react-icons/di"
+import { FaNode } from "react-icons/fa";
+import { SiTailwindcss, SiMongodb } from "react-icons/si";
+import { GrReactjs } from "react-icons/gr";
+import { IoLogoNpm, IoSparkles } from "react-icons/io5";
+import { DiHeroku } from "react-icons/di";
 
 const About = () => {
   return (
     <div>
-      <Stars />
       <section>
-        <div className=" container px-6 pt-16 pb-12 mx-auto text-center duration-500 h-full bg-gray-50 dark:bg-neutral-900">
+        <div className=" container px-6 pt-16 pb-12 mx-auto text-center duration-500 bg-gray-50 dark:bg-neutral-900">
           <div className="relative max-w-lg mx-auto">
+              {/* <Stars /> */}
             <section className="flex items-center h-2/6 md:h-1/2 ">
               <HeroTitle
                 title={"Unsaid Feelings"}
@@ -36,7 +36,7 @@ const About = () => {
             </section>
 
             <h1 className="text-md font-bold text-gray-800 dark:text-white md:text-lg mt-3 font-TheGirlNextDoor">
-              A Archive for unsent messages
+              A Archive For Unsaid Feelings
             </h1>
 
             <p className="indent-1 font-thin leading-9 relative text-justify pb-5 mt-16 text-gray-800 dark:text-gray-200">
@@ -76,19 +76,53 @@ const About = () => {
               <AiFillGithub className="h-5 w-5 text-neutral-900 dark:text-white" />
             </Link>
           </div>
-        </div>
-        <div className="mx-auto w-1/4 justify-center mb-16">
-            <p className="font-Inter text-center font-semibold dark:text-neutral-50">build with</p>
-            <div className="flex items-center justify-evenly space-x-4 my-8 flex-wrap">
-                <FaNode className="w-12 h-12 text-neutral-900 dark:text-neutral-500"/>
-                <SiTailwindcss className="w-8 h-8 text-sky-600"/>
-                <GrReactjs className="w-8 h-8 text-sky-400"/>
-                <SiMongodb className="w-8 h-8 text-green-600"/>
-                <IoLogoNpm className="w-12 h-12 text-orange-800"/>
-                <DiHeroku className="w-9 h-9 text-purple-700"/>
-                
+          <div className="mx-auto w-1/4 justify-center mt-12 mb-16">
+            <div className=" flex items-center justify-center space-x-3">
+                <IoSparkles className="text-yellow-400" />
+                <p className="font-Inter text-center dark:text-neutral-50"> build with  </p>
+                <IoSparkles className="text-yellow-400" />
             </div>
+            <div className=" flex items-center justify-evenly space-x-4 my-8 flex-wrap">
+              <a
+                href="https://nodejs.org/en/"
+                rel="noreferrer"
+                target={"_blank"}
+              >
+                <FaNode className="hover:scale-x-110 duration-300 hover:-translate-y-2 w-12 h-12 text-neutral-900 dark:text-neutral-500" />
+              </a>
+              <a
+                href="https://tailwindcss.com/"
+                rel="noreferrer"
+                target={"_blank"}
+              ><SiTailwindcss className="hover:scale-x-110 duration-300 hover:-translate-y-2 w-8 h-8 text-sky-600" /></a>
+              <a
+                href="https://reactjs.org/"
+                rel="noreferrer"
+                target={"_blank"}
+              ><GrReactjs className="hover:scale-x-110 duration-300 hover:-translate-y-2 w-8 h-8 text-sky-400" /></a>
+              
+              <a
+                href="https://www.mongodb.com/"
+                rel="noreferrer"
+                target={"_blank"}
+              ><SiMongodb className="hover:scale-x-110 duration-300 hover:-translate-y-2 w-8 h-8 text-green-600" /></a>
+              
+              <a
+                href="https://www.npmjs.com/"
+                rel="noreferrer"
+                target={"_blank"}
+              ><IoLogoNpm className="hover:scale-x-110 duration-300 hover:-translate-y-2 w-12 h-12 text-orange-800" /></a>
+              
+              <a
+                href="https://www.heroku.com/"
+                rel="noreferrer"
+                target={"_blank"}
+              ><DiHeroku className="hover:scale-x-110 duration-300 hover:-translate-y-2 w-9 h-9 text-purple-700" /></a>
+              
+            </div>
+          </div>
         </div>
+        
       </section>
     </div>
   );

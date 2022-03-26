@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { AnimatePresence, motion } from "framer-motion";
 
-import { BsFolderX, BsVectorPen } from "react-icons/bs";
+import { BsVectorPen } from "react-icons/bs";
 import { CgOptions } from "react-icons/cg";
 
 import { api, nShorter } from "../Utils";
@@ -17,42 +17,49 @@ const Home = (props) => {
   const [toggleFilter, setToggleFilter] = useState(false);
   const [toFind, setToFind] = useState("");
 
+  const [max, setMax] = useState(45);
   const [data, setData] = useState([]);
   const [hasSearched, setHasSearched] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [loadingMore, setLoadingMore] = useState(false);
+  const [canLoadMore, setCanLoadMore] = useState(true);
 
-  const [appState, setAppState] = useState()
+  const [appState, setAppState] = useState();
 
   const init = async () => {
-      try{
-        const appStates = await api.post("/getAppSettings", {
-            criteria: { key: "AppState" },
-          });
+    try {
+      const appStates = await api.post("/getAppSettings", {
+        criteria: { key: "AppState" },
+      });
 
-        setAppState(appStates.data.appOption)
-      }catch(e){
-          console.log(e)
-      }
-  }
+      setAppState(appStates.data.appOption);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const LIM = 45;
 
   const search = async () => {
     try {
       setLoading(true);
       let currentIds = data.map((obj, idx) => obj._id);
       // maxReturn from server 45 records
-
       // what ? to : string | from : string | letter
 
       let what = { mode: filterValue, search: toFind };
 
       const response = await api.post("/search", {
         currentIds,
-        limit: 45,
+        limit: max,
         what,
       });
+      setData([...data, ...response.data.result]);
 
-      setData(response.data.result);
+      if (response.data.result.length < LIM) setCanLoadMore(false);
+
       setLoading(false);
+      setLoadingMore(false);
       setHasSearched(true);
     } catch (e) {
       console.log(e);
@@ -64,21 +71,20 @@ const Home = (props) => {
   };
 
   const getAppOption = (name, key) => {
-      if(!appState) return { value : ''}
+    if (!appState) return { value: "" };
 
-      for(var x = 0; x < appState.length; x++){
-          const foc = appState[x] 
-          if(foc.name === name && foc.key === key)
-            return foc
-      }
-      
-      return { value : ''}
-  }
+    for (var x = 0; x < appState.length; x++) {
+      const foc = appState[x];
+      if (foc.name === name && foc.key === key) return foc;
+    }
 
-  useEffect(()=>{
-      search()
-      init()
-  },[])
+    return { value: "" };
+  };
+
+  useEffect(() => {
+    search();
+    init();
+  }, []);
 
   return (
     <>
@@ -124,6 +130,7 @@ const Home = (props) => {
                 }}
                 onKeyDown={(e) => {
                   if (e.key !== "Enter") return;
+                  setCanLoadMore(true);
                   setData([]);
                   search();
                   untogleFilter();
@@ -194,37 +201,63 @@ const Home = (props) => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5 }}
-                className={`absolute -bottom-36 text-center text-gray-700 my-9 dark:text-gray-400 ${data.length === 0? 'font-TheGirlNextDoor' : 'font-Yomogi'}`}
+                className={`absolute -bottom-36 text-center text-gray-700 my-9 dark:text-gray-400 ${
+                  data.length === 0 ? "font-TheGirlNextDoor" : "font-Yomogi"
+                }`}
               >
-                {data.length === 0 ? "Sorry, We Found Nothing" : `${nShorter(getAppOption('TotalSubmissions', 'AppState').value,2)} Total Submissions`}
+                {data.length === 0
+                  ? "Sorry, We Found Nothing"
+                  : `${nShorter(
+                      getAppOption("TotalSubmissions", "AppState").value,
+                      2
+                    )} Total Submissions`}
               </motion.p>
             )}
           </motion.section>
         </div>
 
-        {hasSearched && !loading && data.length !== 0 && (
-          <section
-            className={`min-h-screen md:w-11/12 w-full mx-auto max-w-screen-xl my-16 ${
-              data.length === 0 && "h-24"
-            }`}
-          >
-            <div className="w-full py-8 grid grid-col-1 sm:grid-cols-2 lg:grid-cols-3 sm:gap-x-4 md:gap-x-8 gap-y-2">
-              <AnimatePresence>
-                {data.map((feelings, idx) => (
-                  <div
-                    key={idx}
-                    className="cursor-pointer"
-                    onClick={() => {
-                      props.history.push(`/writtenFeelings?id=${feelings._id}`);
-                    }}
-                  >
-                    <Feelings data={feelings} />
-                  </div>
-                ))}
-              </AnimatePresence>
-            </div>
-          </section>
-        )}
+        <section
+          className={`relative min-h-screen md:w-11/12 w-full mx-auto max-w-screen-xl my-16 ${
+            data.length === 0 && "h-24"
+          }`}
+        >
+          <div className="w-full py-8 grid mx-1 grid-col-1 sm:grid-cols-2 lg:grid-cols-3 sm:gap-x-4 md:gap-x-8 gap-y-2">
+            <AnimatePresence>
+              {data.map((feelings, idx) => (
+                <div
+                  key={idx}
+                  className="cursor-pointer"
+                  onClick={() => {
+                    props.history.push(`/writtenFeelings?id=${feelings._id}`);
+                  }}
+                >
+                  <Feelings data={feelings} />
+                </div>
+              ))}
+            </AnimatePresence>
+          </div>
+          {loadingMore && <Loading />}
+          {!loadingMore && (
+            <>
+              {canLoadMore ? (
+                <p
+                  onClick={() => {
+                    setLoadingMore(true);
+                    setMax(max + LIM);
+                    search();
+                  }}
+                  className={`${loading && 'hidden'} px-3 text-center py-1 my-auto cursor-pointer text-neutral-700 dark:text-blue-200 `}
+                >
+                  Load More
+                </p>
+              ) : (
+                <p className={`${loading && 'hidden'} px-3 text-sm text-center py-1 my-auto text-neutral-800 dark:text-gray-400 `}>
+                  no more to show
+                </p>
+              )}
+            </>
+          )}
+        </section>
       </div>
     </>
   );
